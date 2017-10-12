@@ -28,7 +28,7 @@ build:
 integrations:
   hub:
     - integrationName: "dr-aws"
-      type: ecr
+      type: awsiam
       region: us-east-1
       branches:
         only:
