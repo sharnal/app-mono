@@ -27,8 +27,8 @@ build:
 # using credentials specified in the account integration
 integrations:
   hub:
-    - integrationName: "dr-aws"
-      type: awsiam
+    - integrationName: "dr-aws-keys"
+      type: ecr
       region: us-east-1
       branches:
         only:
