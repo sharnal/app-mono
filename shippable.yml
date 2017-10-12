@@ -27,7 +27,7 @@ build:
 # using credentials specified in the account integration
 integrations:
   hub:
-    - integrationName: "dr-aws-keys"
+    - integrationName: "dr-aws"
       type: ecr
       region: us-east-1
       branches:

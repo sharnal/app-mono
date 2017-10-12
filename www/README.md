@@ -1,6 +1,6 @@
 # WWW microservice readme.
 
-Front end Node.js micro service. Communicates with the API service..
+Front end Node.js micro service. Communicates with the API service.
 
 # Environmental variables (optional):
 - WWW_PORT: Port used for app (default:80)

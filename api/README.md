@@ -1,6 +1,6 @@
 # API microservice readme.
 
-API micro service written in Node.js..
+API micro service written in Node.js.
 
 # Optional environment variables required for application:
 
