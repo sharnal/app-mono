@@ -1,0 +1,25 @@
+jobs:
+
+  - name: app-mono_runCI
+    type: runCI
+    steps:
+       - OUT: api_img
+       - OUT: www_img
+
+  - name: micro_api_def
+    type: manifest
+    steps:
+     - IN: api_img
+
+  - name: micro_www_def
+    type: manifest
+    steps:
+     - IN: www_img
+
+  - name: app_deploy
+    type: deploy
+    method: replace
+    steps:
+      - IN: micro_api_def
+      - IN: micro_www_def
+      - IN: ecs_cluster
