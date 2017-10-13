@@ -3,9 +3,11 @@ install_node_modules() {
 }
 
 execute_tests_and_code_coverage() {
-  grunt --force
-  ./node_modules/.bin/istanbul cover grunt --force --dir $SHIPPABLE_BUILD_DIR/shippable/codecoverage
-  ./node_modules/.bin/istanbul report cobertura --dir  $SHIPPABLE_BUILD_DIR/shippable/codecoverage/
+  if [ -f ./Gruntfile.js ]; then
+    grunt --force
+    ./node_modules/.bin/istanbul cover grunt --force --dir $SHIPPABLE_BUILD_DIR/shippable/codecoverage
+    ./node_modules/.bin/istanbul report cobertura --dir  $SHIPPABLE_BUILD_DIR/shippable/codecoverage/
+  fi  
 }
 
 tag_and_push_image() {
