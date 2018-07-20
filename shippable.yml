@@ -33,3 +33,52 @@ integrations:
       branches:
         only:
           - master
+
+resources:
+  - name: api_img
+    type: image
+    integration: dr-aws-keys
+    pointer:
+      sourceName: "679404489841.dkr.ecr.us-east-1.amazonaws.com/api"
+    seed:
+      versionName: "master.1"
+
+  - name: www_img
+    type: image
+    integration: dr-aws-keys
+    pointer:
+      sourceName: "679404489841.dkr.ecr.us-east-1.amazonaws.com/www"
+    seed:
+      versionName: "master.1"
+
+  - name: ecs_cluster
+    type: cluster
+    integration: dr-aws
+    pointer:
+      sourceName : "mono-repo" #name of the cluster to which we are deploying
+      region: "us-east-1"
+ 
+jobs:
+  - name: app-mono_runCI
+    type: runCI
+    steps:
+       - OUT: api_img
+       - OUT: www_img
+
+  - name: micro_api_def
+    type: manifest
+    steps:
+     - IN: api_img
+
+  - name: micro_www_def
+    type: manifest
+    steps:
+     - IN: www_img
+
+  - name: app_deploy
+    type: deploy
+    method: replace
+    steps:
+      - IN: micro_api_def
+      - IN: micro_www_def
+      - IN: ecs_cluster
